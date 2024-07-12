@@ -1,0 +1,13 @@
+        <div id="profile-container">
+            {{#each profiles}}
+                <div class="profile-card">
+                    <img src="{{image}}" alt="{{name}}'s profile picture">
+                    <h2>{{name}}, {{age}}</h2>
+                    <p>{{bio}}</p>
+                    <div class="actions">
+                        <button class="dislike-btn" data-id="{{id}}">Dislike</button>
+                        <button class="like-btn" data-id="{{id}}">Like</button>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
