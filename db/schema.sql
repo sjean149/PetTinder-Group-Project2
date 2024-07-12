@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS pettinder;
-CREATE DATABASE pettinder;
+DROP DATABASE IF EXISTS tinderpets_db;
+CREATE DATABASE tinderpets_db;
