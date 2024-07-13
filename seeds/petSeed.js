@@ -2,7 +2,7 @@ const { Pet } = require('../models')
 
 const petData = [
   {
-   "owner_id": 1,
+   "user_id": 1,
    "name": "Koigen",
    "profilePicture": "sephora_profile.jpg",
    "age": 5,
@@ -14,7 +14,7 @@ const petData = [
    "interests": "Fetch, swimming"
   },
   {
-   "owner_id": 2,
+   "user_id": 2,
    "name": "Felipa",
    "profilePicture": "alex_profile.jpg",
    "age": 3,
@@ -26,8 +26,7 @@ const petData = [
    "interests": "Sleeping, exploring"
   },
   {
-   
-   "owner_id": 3,
+   "user_id": 3,
    "name": "Roro",
    "profilePicture": "amiko_profile.jpg",
    "age": 4,
