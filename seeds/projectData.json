@@ -1,8 +1,0 @@
-{
-    "settings": {
-      "maxDistance": 20,
-      "maxAgeDiff": 2,
-      "preferredBreeds": ["Golden Retriever", "Maine Coon", "Poodle", "Cavapoo", "Goldendoodle"]
-    }
-  }
-  
