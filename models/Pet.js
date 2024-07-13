@@ -46,11 +46,11 @@ Pet.init(
       allowNull: true
     },
     location: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     },
     interests: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     }
 
