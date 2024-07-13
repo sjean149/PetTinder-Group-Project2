@@ -1,5 +1,5 @@
 const router = require('express').Router();
-// const { User } = require('../models');
+
 
 router.get('/', async (req, res) => {
     try {
@@ -9,7 +9,36 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/profile', async (req, res) => {
+    try {
+        res.render('profile');
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
-router.get('')
+router.get('/dashboard', async (req, res) => {
+    try {
+        res.render('dashboard');
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/createProfile', async (req, res) => {
+    try {
+        res.render('createProfile');
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/chatsLikes', async (req, res) => {
+    try {
+        res.render('chatsLikes');
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 module.exports = router;
