@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 //const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
-const User = require('./User');
 class Pet extends Model { }
 
 Pet.init(
@@ -12,11 +11,11 @@ Pet.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    owner_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'User',
+        model: 'user',
         key: 'id',
       }
     },
@@ -60,7 +59,7 @@ Pet.init(
   timestamps: false,
   freezeTableName: true,
   underscored: true,
-  modelName: 'Pet',
+  modelName: 'pet',
   }
 );
 

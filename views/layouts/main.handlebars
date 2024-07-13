@@ -10,24 +10,23 @@
 </head>
 
 <body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
+  <div>
+    <header>
       <h1> Pet-Tinder </h1>
       <nav>
         {{#if logged_in}}
         <a href="/dashboard">dashboard</a> |
-        <button class="no-button" id="logout">logout</button>
+        <button id="logout">logout</button>
         {{else}}
         <a href="/login">login/sign up</a>
         {{/if}}
       </nav>
     </header>
-    <main class="container container-fluid mt-5">
 
+    <main>
       {{{ body }}}
     </main>
     <footer>
-      
     </footer>
   </div>
 
