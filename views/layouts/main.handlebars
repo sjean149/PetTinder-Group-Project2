@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet-Tinder</title>
+  <link rel="stylesheet" href="/css/jass.css">
+  <link rel="stylesheet" href="../../public/css/styles.css">
+</head>
+
+<body>
+  <div>
+    <header>
+      <h1> Pet-Tinder </h1>
+      <nav>
+        {{#if logged_in}}
+        <a href="/dashboard">dashboard</a> |
+        <button id="logout">logout</button>
+        {{else}}
+        <a href="/login">login/sign up</a>
+        {{/if}}
+      </nav>
+    </header>
+
+    <main>
+      {{{ body }}}
+    </main>
+    <footer>
+    </footer>
+  </div>
+
+  {{#if logged_in}}
+  <script src=""></script>
+  {{/if}}
+</body>
+
+</html>
