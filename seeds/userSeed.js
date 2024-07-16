@@ -34,7 +34,11 @@ function writeJsonToFile(data, filename) {
 
 writeJsonToFile({ users: userData }, './userdata.json');
 */
+const seedUsers = async () =>{
+    for(const user of userData){
+await User.create(user)
+   }
+}
 
 
-const seedUsers = async () => await User.bulkCreate(userData);
 module.exports = seedUsers;
