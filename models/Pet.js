@@ -13,12 +13,12 @@ Pet.init(
     },
     user_id: {
       type: DataTypes.INTEGER,
-      /*
+      
       allowNull: true,
       references: {
         model: 'user',
         key: 'id',
-      } */
+      } 
     },
     name: {
       type: DataTypes.STRING,

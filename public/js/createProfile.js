@@ -1,5 +1,6 @@
+let activePicture;
 
-var myWidget = cloudinary.createUploadWidget({
+const myWidget = cloudinary.createUploadWidget({
   cloudName: 'dy9arp5xw',
   uploadPreset: 'pet_tinder'
 }, (error, result) => {
@@ -7,39 +8,35 @@ var myWidget = cloudinary.createUploadWidget({
     imagePath = result.info.url;
     public_id = result.info.public_id;
 
-    document.querySelector('#profile-picture').value = imagePath;
+    document.getElementById(activePicture).value = imagePath;
 
-    const profilePicture = imagePath;
-
-    //document.getElementById('profile').src = imagePath;
-
-   
   } else if (error) {
     console.error('Upload Error:', error);
   }
 
 });
 
-function uploadImage(imagePath, publicId) {
-  document.getElementById('profile').src = imagePath;
-  console.log(imagePath, publicId)
-}
 
-
-//document.getElementById("profile-picture").addEventListener("click", myWidget.open, false);
-//document.getElementById("picture1").addEventListener("click", myWidget.open, false);
-//document.getElementById("picture2").addEventListener("click", myWidget.open, false);
-
+document.getElementById("profile-picture").addEventListener("click", ()=>{
+  activePicture = "profile-picture";
+  myWidget.open();
+}, false);
+document.getElementById("picture1").addEventListener("click", ()=>{
+  activePicture = "picture1";
+  myWidget.open();
+}, false);
+document.getElementById("picture2").addEventListener("click", ()=>{
+  activePicture = "picture2";
+  myWidget.open();
+}, false);
 
 
 
 const profileFormHandler = async (event) => {
   event.preventDefault();
 
-
-  
   const name = document.querySelector('#name').value.trim();
-  const profilePicture = document.querySelector('#profile-picture').value.trim();
+  const profilePicture = document.getElementById('profile-picture').value.trim();
   const age = document.querySelector('#age').value.trim();
   const description = document.querySelector('#description').value.trim();
   const breed = document.querySelector('#breed').value.trim();

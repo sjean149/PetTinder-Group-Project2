@@ -9,7 +9,7 @@ router.post('/createProfile', async (req, res) => {
         const petData = await Pet.create({
             user_id: req.session.user_id,
             name: req.body.name,
-            profilePic: req.body.profilePic,
+            profilePicture: req.body.profilePicture,
             age: req.body.age,
             description: req.body.description,
             breed: req.body.breed,
@@ -17,7 +17,8 @@ router.post('/createProfile', async (req, res) => {
             picture2: req.body.picture2,
             location: req.body.location,
             interests: req.body.interests
-        });
+        }); 
+        res.json(petData);
 
     } catch (err) {
         res.status(400).json(err);
