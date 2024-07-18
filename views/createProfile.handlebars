@@ -2,7 +2,10 @@
     <h1>Create Pet Profile</h1>
 </header>
 
-    <form id="profile-form">
+<main>
+
+    <form id="profile-form" class="form profile-form">
+
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
@@ -10,7 +13,7 @@
 
         <div class="form-group">
             <label for="profile-picture">Profile Picture URL:</label>
-            <input type="button" id="profile-picture" name="profile-picture" required>
+            <input type="button" id="profile-picture" value="Profile Picture">
         </div>
 
         <div class="form-group">
@@ -30,12 +33,13 @@
 
         <div class="form-group">
             <label for="picture1">Picture 1 URL:</label>
-            <input type="url" id="picture1" name="picture1">
+            <input type="button" id="picture1" value="First Picture (optional)">
         </div>
 
         <div class="form-group">
             <label for="picture2">Picture 2 URL:</label>
-            <input type="url" id="picture2" name="picture2">
+            <input type="button" id="picture2" value="Second Picture (optional)">
+
         </div>
 
         <div class="form-group">
@@ -47,7 +51,6 @@
             <label for="interests">Interests:</label>
             <input type="text" id="interests" name="interests" required>
         </div>
-
         <div class="form-group">
             <label for="interests">Social Media:</label>
             <input type="text" id="socialMedia" name="socialMedia" required>
@@ -55,5 +58,8 @@
 
         <button type="submit">Create Profile</button>
     </form>
+</main>
 
-<script src="/js/createProfile.js"></script>
+
+<script src="https://upload-widget.cloudinary.com/latest/global/all.js" type="text/javascript"></script>
+<script src="./js/createProfile.js"></script>
