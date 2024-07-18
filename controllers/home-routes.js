@@ -46,7 +46,6 @@ router.get('/createProfile', async (req, res) => {
   }
 });
 
-// Renders the chatsLikes page with session logged_in status
 router.get('/chatsLikes', async (req, res) => {
   try {
     res.render('chatsLikes', { logged_in: req.session.logged_in });
@@ -54,5 +53,7 @@ router.get('/chatsLikes', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
 
 module.exports = router;
