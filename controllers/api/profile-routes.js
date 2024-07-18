@@ -14,6 +14,8 @@ router.post('/profile', async (req, res) => {
             location: req.body.location,
             interests: req.body.interests
         });
+        petData = petData.toJSON();
+        console.log(petData);
 
     } catch (err) {
         res.status(400).json(err);
