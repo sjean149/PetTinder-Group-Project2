@@ -17,8 +17,9 @@ router.post('/createProfile', async (req, res) => {
             picture2: req.body.picture2,
             location: req.body.location,
             interests: req.body.interests
-        }); 
-        res.json(petData);
+        });
+        petData = petData.toJSON();
+        console.log(petData);
 
     } catch (err) {
         res.status(400).json(err);
