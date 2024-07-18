@@ -14,11 +14,15 @@
 <body>
   <div>
     <header>
+      <h1 id="Tendr" class="title is-1"> Tendr <i class="fas fa-paw"></i> </h1>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
         {{#if logged_in}}
         <a href="/dashboard">dashboard</a> |
         <button id="logout">logout</button>
         {{else}}
-        <a href="/login">login/sign up</a>
+        <div>
+          <a class="title is-6" href="/login">login/sign up</a>
+        </div>
         {{/if}}
       </nav>
     </header>
