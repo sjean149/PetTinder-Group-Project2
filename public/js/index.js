@@ -4,9 +4,8 @@ var myWidget = cloudinary.createUploadWidget({
 }, (error, result) => {
   if (!error && result && result.event === "success") {
     imagePath = result.info.url;
-    public_id = result.info.public_id;
+    //public_id = result.info.public_id;
 
-    
     uploadImage(result.info.url, result.info.public_id);
   } else if (error) {
     console.error('Upload Error:', error);
@@ -16,8 +15,11 @@ var myWidget = cloudinary.createUploadWidget({
 
 function uploadImage(imagePath, publicId) {
   document.getElementById('profile').src = imagePath;
-
   console.log(imagePath, publicId)
 }
 
 document.getElementById("profile-picture").addEventListener("click", myWidget.open, false);
+
+
+document.getElementById("picture1").addEventListener("click", myWidget.open, false);
+document.getElementById("picture2").addEventListener("click", myWidget.open, false);

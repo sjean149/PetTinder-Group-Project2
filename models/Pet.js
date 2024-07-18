@@ -24,7 +24,7 @@ Pet.init(
       allowNull: true
     },
     profilePicture: {
-      type: DataTypes.JSON,
+      type: DataTypes.STRING,
       allowNull: true
     },
     age: {
@@ -37,11 +37,11 @@ Pet.init(
       type: DataTypes.STRING,
     },
     picture1: {
-      type: DataTypes.JSON,
+      type: DataTypes.STRING,
       allowNull: true
     },
     picture2: {
-      type: DataTypes.JSON,
+      type: DataTypes.STRING,
       allowNull: true
     },
     location: {
