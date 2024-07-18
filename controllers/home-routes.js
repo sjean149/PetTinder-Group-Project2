@@ -40,6 +40,7 @@ router.get('/dashboard', async (req, res) => {
 // Renders the createProfile page with session logged_in status
 router.get('/createProfile', async (req, res) => {
   try {
+    console.log(req.session);
     res.render('createProfile', { logged_in: req.session.logged_in });
   } catch (err) {
     res.status(500).json(err);

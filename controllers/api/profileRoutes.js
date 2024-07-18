@@ -2,15 +2,19 @@ const router = require('express').Router();
 const { Pet } = require('../../models');
 // const withAuth = require('../utils/auth');
 
-
-router.post('/profile', async (req, res) => {
+// -- api/pets/login
+router.post('/createProfile', async (req, res) => {
+   
     try {
         const petData = await Pet.create({
+            user_id: req.session.user_id,
             name: req.body.name,
             profilePic: req.body.profilePic,
             age: req.body.age,
             description: req.body.description,
             breed: req.body.breed,
+            picture1: req.body.picture2,
+            picture2: req.body.picture2,
             location: req.body.location,
             interests: req.body.interests
         });
@@ -45,4 +49,6 @@ router.get('/profile/:id', async (req, res) => {
     }
 
 })
+
+module.exports = router;
 
