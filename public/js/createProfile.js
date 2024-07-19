@@ -37,6 +37,7 @@ const profileFormHandler = async (event) => {
 
   const name = document.querySelector('#name').value.trim();
   const profilePicture = document.getElementById('profile-picture').value.trim();
+
   const age = document.querySelector('#age').value.trim();
   const description = document.querySelector('#description').value.trim();
   const breed = document.querySelector('#breed').value.trim();
@@ -44,8 +45,10 @@ const profileFormHandler = async (event) => {
   const picture2 = document.querySelector('#picture2').value.trim();
   const location = document.querySelector('#location').value.trim();
   const interests = document.querySelector('#interests').value.trim();
-  const socialMedia = document.getElementById('social-media').value.trim
+  const socialMedia = document.getElementById('social-media').value.trim();
+
   
+
   if (name && profilePicture && age && description && breed && location && interests && socialMedia) {
     try {
       const response = await fetch('/api/pets/createProfile', {
@@ -66,7 +69,9 @@ const profileFormHandler = async (event) => {
       });
 
       if (response.ok) {
-        document.location.replace('/');
+        const petData = await response.json();
+        alert(`${petData.name} created successfully. It is such a cute ${petData.breed}!`);
+        document.location.replace('/dashboard');
       } else {
         const errorData = await response.json();
         alert(`Failed to create profile: ${errorData.message || response.statusText}`);

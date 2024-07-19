@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth');
 // Route to create a pet profile
 router.post('/createProfile', withAuth, async (req, res) => {
     try {
-        const petData = await Pet.create({
+        let petData = await Pet.create({
             user_id: req.session.user_id,
             name: req.body.name,
             profilePicture: req.body.profilePicture,
@@ -19,8 +19,14 @@ router.post('/createProfile', withAuth, async (req, res) => {
             socialMedia: req.body.socialMedia
         });
 
+
+        petData = petData.toJSON();
+        res.json(petData);
+
+
         res.status(200).json(petData); // Sending response back to client
     } catch (err) {
+        console.log(err);
         res.status(400).json(err);
     }
 });
