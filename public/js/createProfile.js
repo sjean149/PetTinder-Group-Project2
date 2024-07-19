@@ -44,39 +44,43 @@ const profileFormHandler = async (event) => {
   const picture2 = document.querySelector('#picture2').value.trim();
   const location = document.querySelector('#location').value.trim();
   const interests = document.querySelector('#interests').value.trim();
-
-  const socialMedia = document.querySelector('#socialMedia').value.trim();
-
-if (name && profilePicture && age && description && breed && location && interests && socialMedia) {
+  const socialMedia = document.getElementById('social-media').value.trim
+  
+  if (name && profilePicture && age && description && breed && location && interests && socialMedia) {
     try {
       const response = await fetch('/api/pets/createProfile', {
         method: 'POST',
-        body: JSON.stringify({name, profilePicture, age, description, breed, picture1, picture2, location, interests, socialMedia}),
+        body: JSON.stringify({
+          name,
+          profilePicture,
+          age,
+          description,
+          breed,
+          picture1,
+          picture2,
+          location,
+          interests,
+          socialMedia
+        }),
         headers: { 'Content-Type': 'application/json' },
-      })
-        .then(data => {
-          console.log(data); // Print the response data to the console
-        })
-        .catch(error => {
-          console.error('There was a problem with the fetch operation:', error);
-          alert(error);
-        });
+      });
 
-      /*
-          if (response.ok) {
-            document.location.replace('/');
-          } else {
-            alert(`Failed to create profile in: ${response.statusText}`);
-          }
-            */
-
+      if (response.ok) {
+        document.location.replace('/');
+      } else {
+        const errorData = await response.json();
+        alert(`Failed to create profile: ${errorData.message || response.statusText}`);
+      }
     } catch (err) {
-      console.log('Error during login:', err);
-      alert('Failed to profile. Please try again later.');
+      console.error('Error during profile creation:', err);
+      alert('Failed to create profile. Please try again later.');
     }
-
+  } else {
+    alert('Please fill out all required fields.');
   }
-}
+};
+
+
 
   document.getElementById('profile-form').addEventListener('submit', profileFormHandler);
 

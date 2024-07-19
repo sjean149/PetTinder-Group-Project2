@@ -16,7 +16,7 @@ router.post('/createProfile', withAuth, async (req, res) => {
             picture2: req.body.picture2,
             location: req.body.location,
             interests: req.body.interests,
-            socialMedia: req.body.socialMedia,
+            socialMedia: req.body.socialMedia
         });
 
         res.status(200).json(petData); // Sending response back to client
@@ -30,7 +30,7 @@ router.get('/profile/:id', withAuth, async (req, res) => {
     try {
         const profileData = await Pet.findOne({
             where: {
-                id: req.params.id, // Changed req.body.id to req.params.id
+                id: req.params.id,
             },
         });
 
