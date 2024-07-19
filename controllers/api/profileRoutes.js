@@ -1,10 +1,9 @@
 const router = require('express').Router();
 const { Pet } = require('../../models');
-// const withAuth = require('../utils/auth');
+const withAuth = require('../../utils/auth');
 
-// -- api/pets/login
-router.post('/createProfile', async (req, res) => {
-   
+// Route to create a pet profile
+router.post('/createProfile', withAuth, async (req, res) => {
     try {
         let petData = await Pet.create({
             user_id: req.session.user_id,
@@ -13,48 +12,43 @@ router.post('/createProfile', async (req, res) => {
             age: req.body.age,
             description: req.body.description,
             breed: req.body.breed,
-            picture1: req.body.picture2,
+            picture1: req.body.picture1, // Fixed picture1 property
             picture2: req.body.picture2,
             location: req.body.location,
             interests: req.body.interests,
             socialMedia: req.body.socialMedia
-
         });
+
 
         petData = petData.toJSON();
         res.json(petData);
 
+
+        res.status(200).json(petData); // Sending response back to client
     } catch (err) {
         console.log(err);
         res.status(400).json(err);
     }
 });
 
-router.get('/profile/:id', async (req, res) => {
+// Route to get a pet profile by ID
+router.get('/profile/:id', withAuth, async (req, res) => {
     try {
         const profileData = await Pet.findOne({
             where: {
                 id: req.params.id,
             },
         });
-        if (profileData) {
-            const profileDataJSON = Pet.toJSON();
-            console.log(profileDataJSON);
-            res.send(profileDataJSON);
-        }
 
         if (!profileData) {
-            res
-                .status(400)
-                .json({ message: 'Incorrect email or password. Please try again!' });
+            res.status(404).json({ message: 'Profile not found!' });
             return;
         }
 
+        res.status(200).json(profileData); // Sending response back to client
     } catch (err) {
-        console.error(`Profile can not be seen because:`, err);
+        res.status(400).json(err);
     }
-
-})
+});
 
 module.exports = router;
-

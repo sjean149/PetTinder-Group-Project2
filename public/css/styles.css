@@ -1,8 +1,9 @@
-
+/* Base Colors */
 body {
-    background-color: #3f3f3f;
+    background-color: #1f2229;
 }
 
+/* Stylised Header Bar */
 #Tendr {
     color: #ffffff;
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffb301+0,f99345+34,f99345+35,f99345+35,ffb301+50,eb6e01+51,ffb301+75,c85d00+100 */
