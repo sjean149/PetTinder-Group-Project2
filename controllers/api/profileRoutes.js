@@ -17,6 +17,7 @@ router.post('/createProfile', async (req, res) => {
             picture2: req.body.picture2,
             location: req.body.location,
             interests: req.body.interests,
+            socialMedia: req.body.socialMedia
 
         });
         petData = petData.toJSON();
@@ -31,7 +32,7 @@ router.get('/profile/:id', async (req, res) => {
     try {
         const profileData = await Pet.findOne({
             where: {
-                id: req.body.id,
+                id: req.params.id,
             },
         });
         if (profileData) {
