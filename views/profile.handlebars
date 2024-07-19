@@ -2,6 +2,13 @@
   <h1>{{username}}</h1>
 </header>
 
+<nav class="navbar breadcrumb" aria-label="breadcrumbs">
+    <ul>
+        <li><button href="#"><a href="/dashboard">Dashboard</a></button></li>
+        <li><button href="#"><a class="is-active"href="/profile">Profile</a></button></li>
+    </ul>
+</nav>
+
 <section class="profile-header">
   <img src="{{profilePicture}}" alt="{{name}}'s profile picture" class="profile-pic">
     <div class="profile-info">
@@ -25,11 +32,12 @@
         
 <section class="picture-grid">
   {{#each picture}}
-    <div class="picutres">
+    <div class="pictures">
      <img src="{{this}}" alt="Photo">
     </div>
   {{/each}}
 </section>
+
 
 
 
