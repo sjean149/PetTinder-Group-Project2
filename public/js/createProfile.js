@@ -47,7 +47,7 @@ const profileFormHandler = async (event) => {
 
   const socialMedia = document.querySelector('#socialMedia').value.trim();
 
-if (name && profilePic && age && description && breed && location && interests && socialMedia) {
+if (name && profilePicture && age && description && breed && location && interests && socialMedia) {
     try {
       const response = await fetch('/api/pets/createProfile', {
         method: 'POST',
