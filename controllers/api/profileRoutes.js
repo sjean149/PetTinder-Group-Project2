@@ -6,7 +6,7 @@ const { Pet } = require('../../models');
 router.post('/createProfile', async (req, res) => {
    
     try {
-        const petData = await Pet.create({
+        let petData = await Pet.create({
             user_id: req.session.user_id,
             name: req.body.name,
             profilePicture: req.body.profilePicture,
@@ -20,10 +20,12 @@ router.post('/createProfile', async (req, res) => {
             socialMedia: req.body.socialMedia
 
         });
+
         petData = petData.toJSON();
-        console.log(petData);
+        res.json(petData);
 
     } catch (err) {
+        console.log(err);
         res.status(400).json(err);
     }
 });
