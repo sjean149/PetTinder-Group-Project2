@@ -85,7 +85,5 @@ const profileFormHandler = async (event) => {
   }
 };
 
-
-
   document.getElementById('profile-form').addEventListener('submit', profileFormHandler);
 
