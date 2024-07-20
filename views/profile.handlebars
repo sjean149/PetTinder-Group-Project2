@@ -1,43 +1,34 @@
 <header>
-  <h1>{{username}}</h1>
+  <h1>Your Profile</h1>
 </header>
 
-<nav class="navbar breadcrumb" aria-label="breadcrumbs">
-    <ul>
-        <li><button href="#"><a href="/dashboard">Dashboard</a></button></li>
-        <li><button href="#"><a class="is-active"href="/profile">Profile</a></button></li>
-    </ul>
-</nav>
-
 <section class="profile-header">
-  <img src="{{profilePicture}}" alt="{{name}}'s profile picture" class="profile-pic">
+  {{#each pets}}
     <div class="profile-info">
+      <img src="{{profilePicture}}" alt="{{name}}'s profile picture" class="profile-pic">
       <div class="profile-description">
         <h2>{{name}}</h2>
         <p>{{description}}</p>
-        {{!-- <div>{{profilePic}}</div> --}}
+        <div><strong>Age:</strong> {{age}}</div>
+        <div><strong>Breed:</strong> {{breed}}</div>
+        <div><strong>Location:</strong> {{location}}</div>
+        <div><strong>Interests:</strong> {{interests}}</div>
       </div>
-      <div class="profile-pet">
-        <div><strong>{{age}}</strong> age</div>
-        <div><strong>{{breed}}</strong> bread</div>
-        <div><strong>{{location}}</strong> locations</div>
-      </div>
-      <div>
-        <ul>
-          {{interests}}
-        </ul>
-      </div>
-    </div>
-</section>
-        
-<section class="picture-grid">
-  {{#each picture}}
-    <div class="pictures">
-     <img src="{{this}}" alt="Photo">
     </div>
   {{/each}}
 </section>
 
-
-
-
+<section class="picture-grid">
+  {{#each pets}}
+    {{#if picture1}}
+      <div class="pictures">
+        <img src="{{picture1}}" alt="Photo 1">
+      </div>
+    {{/if}}
+    {{#if picture2}}
+      <div class="pictures">
+        <img src="{{picture2}}" alt="Photo 2">
+      </div>
+    {{/if}}
+  {{/each}}
+</section>

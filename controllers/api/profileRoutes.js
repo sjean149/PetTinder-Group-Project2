@@ -5,29 +5,15 @@ const withAuth = require('../../utils/auth');
 // Route to create a pet profile
 router.post('/createProfile', withAuth, async (req, res) => {
     try {
-        let petData = await Pet.create({
+        const petData = await Pet.create({
+            ...req.body,
             user_id: req.session.user_id,
-            name: req.body.name,
-            profilePicture: req.body.profilePicture,
-            age: req.body.age,
-            description: req.body.description,
-            breed: req.body.breed,
-            picture1: req.body.picture1, // Fixed picture1 property
-            picture2: req.body.picture2,
-            location: req.body.location,
-            interests: req.body.interests,
-            socialMedia: req.body.socialMedia
         });
-
-
-        petData = petData.toJSON();
-        res.json(petData);
-
 
         res.status(200).json(petData); // Sending response back to client
     } catch (err) {
-        console.log(err);
-        res.status(400).json(err);
+        console.log('Error creating pet profile:', err);
+        res.status(400).json(err); // Consider using 500 for server errors
     }
 });
 
@@ -44,10 +30,11 @@ router.get('/profile/:id', withAuth, async (req, res) => {
             res.status(404).json({ message: 'Profile not found!' });
             return;
         }
-
+        
         res.status(200).json(profileData); // Sending response back to client
     } catch (err) {
-        res.status(400).json(err);
+        console.log('Error retrieving pet profile:', err);
+        res.status(400).json(err); // Consider using 500 for server errors
     }
 });
 
