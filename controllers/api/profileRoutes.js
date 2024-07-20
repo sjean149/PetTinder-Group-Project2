@@ -18,23 +18,26 @@ router.post('/createProfile', withAuth, async (req, res) => {
 });
 
 // Route to get a pet profile by ID
-router.get('/profile/:id', withAuth, async (req, res) => {
+router.delete('/profile/:id', withAuth, async (req, res) => {
     try {
-        const profileData = await Pet.findOne({
+        // Attempt to delete the pet record
+        const deletedPetCount = await Pet.destroy({
             where: {
                 id: req.params.id,
+                user_id: req.session.user_id,
             },
         });
 
-        if (!profileData) {
-            res.status(404).json({ message: 'Profile not found!' });
-            return;
+        // Check if any record was deleted
+        if (deletedPetCount === 0) {
+            return res.status(404).json({ message: 'No pet found with this id or you do not have permission to delete it' });
         }
-        
-        res.status(200).json(profileData); // Sending response back to client
+
+        // Respond with a success message
+        res.status(200).json({ message: 'Pet deleted successfully' });
     } catch (err) {
-        console.log('Error retrieving pet profile:', err);
-        res.status(400).json(err); // Consider using 500 for server errors
+        // Log the error and respond with a server error status
+        res.status(500).json({ message: 'An error occurred while deleting the pet' });
     }
 });
 
