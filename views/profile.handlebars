@@ -14,6 +14,9 @@
         <div><strong>Location:</strong> {{location}}</div>
         <div><strong>Interests:</strong> {{interests}}</div>
       </div>
+      <div>
+        <button class="button is-pulled-right has-text-danger mt-2 mr-5" data-id="{{id}}">DELETE</button>
+      </div>
     </div>
   {{/each}}
 </section>
@@ -32,3 +35,5 @@
     {{/if}}
   {{/each}}
 </section>
+
+<script src="./js/createProfile.js"></script>
