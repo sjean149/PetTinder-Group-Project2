@@ -12,7 +12,7 @@ router.post('/createProfile', withAuth, async (req, res) => {
             age: req.body.age,
             description: req.body.description,
             breed: req.body.breed,
-            picture1: req.body.picture1, // Fixed picture1 property
+            picture1: req.body.picture1,
             picture2: req.body.picture2,
             location: req.body.location,
             interests: req.body.interests,
@@ -20,33 +20,14 @@ router.post('/createProfile', withAuth, async (req, res) => {
         });
 
         petData = petData.toJSON();
-        res.json(petData);
-
-        res.status(200).json(petData); // Sending response back to client
+        console.log(`/profile/${petData.id}`);
+        res.redirect(`/profile/${petData.id}`);
     } catch (err) {
         console.log(err);
         res.status(400).json(err);
     }
 });
 
-// Route to get a pet profile by ID
-router.get('/profile/:id', withAuth, async (req, res) => {
-    try {
-        const profileData = await Pet.findOne({
-            where: {
-                id: req.params.id,
-            },
-        });
 
-        if (!profileData) {
-            res.status(404).json({ message: 'Profile not found!' });
-            return;
-        }
-
-        res.status(200).json(profileData); // Sending response back to client
-    } catch (err) {
-        res.status(400).json(err);
-    }
-});
 
 module.exports = router;
