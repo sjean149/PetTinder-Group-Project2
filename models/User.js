@@ -35,26 +35,24 @@ User.init(
         len: [8],
       },
     },
-      
-    },
-    {
-      hooks: {
-        beforeCreate: async (newUserData) => {
-          newUserData.password = await bcrypt.hash(newUserData.password, 10);
-          return newUserData;
-        },
-        beforeUpdate: async (updatedUserData) => {
-          updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-          return updatedUserData;
-        },
+  },
+  {
+    hooks: {
+      beforeCreate: async (newUserData) => {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
       },
-        sequelize,
-        timestamps: false,
-        freezeTableName: true,
-        underscored: true,
-        modelName: 'user',
-      }
-    );
-    
-    module.exports = User;
-    
+      beforeUpdate: async (updatedUserData) => {
+        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        return updatedUserData;
+      },
+    },
+    sequelize,
+    timestamps: false,
+    freezeTableName: true, // Ensures table name matches model name
+    underscored: true,
+    modelName: 'user',
+  }
+);
+
+module.exports = User;

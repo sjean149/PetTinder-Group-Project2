@@ -89,7 +89,30 @@ const profileFormHandler = async (event) => {
   }
 };
 
+const delButtonHandler = async (event) => {
+  if (event.target.hasAttribute('data-id')) {
+    const id = event.target.getAttribute('data-id');
 
+    try {
+      const response = await fetch(`/profile/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        document.location.replace('/profile');
+      } else {
+        alert('Failed to delete pet');
+      }
+    } catch (err) {
+      console.error('Error deleting pet:', err);
+      alert('An error occurred while deleting the pet');
+    }
+  }
+};
+
+document.querySelectorAll('.button.is-pulled-right').forEach(button => {
+  button.addEventListener('click', delButtonHandler);
+});
 
   document.getElementById('profile-form').addEventListener('submit', profileFormHandler);
 

@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
-//const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
-class Pet extends Model { }
+
+class Pet extends Model {}
 
 Pet.init(
   {
@@ -13,20 +13,19 @@ Pet.init(
     },
     user_id: {
       type: DataTypes.INTEGER,
-      
       allowNull: true,
       references: {
         model: 'user',
         key: 'id',
-      } 
+      },
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     profilePicture: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     age: {
       type: DataTypes.INTEGER,
@@ -39,32 +38,31 @@ Pet.init(
     },
     picture1: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     picture2: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     location: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     interests: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     socialMedia: {
       type: DataTypes.STRING,
-      allowNull: true
-    }
-
+      allowNull: true,
+    },
   },
   {
-  sequelize,
-  timestamps: false,
-  freezeTableName: true,
-  underscored: true,
-  modelName: 'pet',
+    sequelize,
+    timestamps: false,
+    freezeTableName: true, // Ensures table name matches model name
+    underscored: true,
+    modelName: 'pet',
   }
 );
 
