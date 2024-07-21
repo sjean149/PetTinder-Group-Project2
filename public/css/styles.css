@@ -22,14 +22,13 @@ html, body {
     flex-direction: column;
 }
 
-.background-section {
-    background-color: #f0f0f0; 
-    background-image: url('/public/assets/petproj.jpg');
+.hero {
+    width:700px;
+    height: 500px;
+    background-image: url(../assets/proj.jpg);
     background-size: cover;
     background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
 }
 
 
@@ -41,7 +40,7 @@ background-color: #ffffff;
 
 .footerContainer {
     width: 100%;
-    padding: 70px 30px 20px;
+    padding: 40px 30px 20px;
 }
 
 
@@ -79,7 +78,7 @@ background-color: #ffffff;
 
 
 .footernav {
-    margin: 30px 0;
+    margin: 10px 0;
 }
 
 .footernav ul {
@@ -113,6 +112,12 @@ opacity: 1;
 .footerbottom p {
     color: #110101;
 }
+
+.footernav a:hover {
+    color: #c85d00;
+}
+
+
 
 
 @media (max-width: 700px) {
