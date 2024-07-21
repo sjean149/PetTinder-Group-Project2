@@ -1,4 +1,4 @@
-<div id="profile-container">
+{{!-- <div id="profile-container">
     {{#each profiles}}
     <div class="profile-card">
         <img src="{{image}}" alt="{{name}}'s profile picture">
@@ -10,4 +10,19 @@
         </div>
     </div>
     {{/each}}
-</div>
+</div> --}}
+
+{{!-- new dashboards cards --}}
+<section id="body">
+    <ion-icon id="dislike" name="heart-dislike"></ion-icon>
+    <div id="swiper">
+
+    </div>
+    <ion-icon id="like" name="heart"></ion-icon>
+</section>
+
+<link rel="stylesheet" href="/css/cards.css">
+<script src="./js/cards.js"></script>
+<script src="./js/moveCards.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
