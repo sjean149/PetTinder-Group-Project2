@@ -114,14 +114,39 @@ router.post('/login', async (req, res) => {
   }
 });
 
-
 // Renders the dashboard page with session logged_in status
 router.get('/dashboard', withAuth, async (req, res) => {
-  try {
-    res.render('dashboard', { logged_in: req.session.logged_in });
-  } catch (err) {
-    res.status(500).json(err);
+
+try {
+  // Fetch pets associated with the logged-in user
+  const petData = await Pet.findAll({
+    include: [
+      {
+        model: User,
+        attributes: ['name'],
+      },
+    ],
+  });
+
+  if (petData.length === 0) {
+    res.status(404).json({ message: 'No pets found!' });
+    return;
   }
+
+  // Serialize the pet data
+  const pets = petData.map((pet) => pet.get({ plain: true }));
+  
+  const users = pets.filter(user => user.id !== req.session.user_id)
+  // Render the profile page with pet data
+  res.render('dashboard', { 
+    pets,
+    logged_in: req.session.logged_in 
+  });
+} catch (err) {
+  // Log error and send response
+  console.log('Error retrieving pet profiles:', err);
+  res.status(500).json(err);
+}
 });
 
 // Renders the createProfile page with session logged_in status
