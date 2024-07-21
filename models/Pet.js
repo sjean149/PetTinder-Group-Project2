@@ -23,7 +23,7 @@ Pet.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    profilePicture: {
+    profile_picture: { // Ensure this field name matches the front end
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -52,7 +52,7 @@ Pet.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    socialMedia: {
+    social_media: { // Ensure this field name matches the front end
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -60,7 +60,7 @@ Pet.init(
   {
     sequelize,
     timestamps: false,
-    freezeTableName: true, // Ensures table name matches model name
+    freezeTableName: true,
     underscored: true,
     modelName: 'pet',
   }
