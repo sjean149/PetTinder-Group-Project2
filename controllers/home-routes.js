@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { User, Pet } = require('../models');
 const withAuth = require('../utils/auth');
-const { Op } = require('sequelize');
 
 // Renders the start page with session logged_in status
 router.get('/', async (req, res) => {
@@ -28,7 +27,11 @@ router.get('/login', async (req, res) => {
 // Renders the profile page with session logged_in status and includes pet data
 router.get('/profile', withAuth, async (req, res) => {
   try {
+    // Fetch pets associated with the logged-in user
     const petData = await Pet.findAll({
+      where: {
+        user_id: req.session.user_id, // Use the logged-in user's ID
+      },
       include: [
         {
           model: User,
@@ -37,52 +40,64 @@ router.get('/profile', withAuth, async (req, res) => {
       ],
     });
 
+    // Log pet data for debugging
     console.log('Pet Data:', petData);
 
+    // Check if no pets are found
     if (petData.length === 0) {
       res.status(404).json({ message: 'No pets found!' });
       return;
     }
 
+    // Serialize the pet data
     const pets = petData.map((pet) => pet.get({ plain: true }));
 
+    // Render the profile page with pet data
     res.render('profile', { 
       pets,
       logged_in: req.session.logged_in 
     });
   } catch (err) {
+    // Log error and send response
     console.log('Error retrieving pet profiles:', err);
     res.status(500).json(err);
   }
 });
 
-// Renders the dashboard page with session logged_in status and excludes current user's pets
-router.get('/dashboard', withAuth, async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
-    const userId = req.session.user_id;
-    const petData = await Pet.findAll({
-      where: {
-        user_Id: {
-          [Op.ne]: userId
-        }
-      }
-    });
+    const userData = await User.findOne({ where: { email: req.body.email } });
 
-    console.log('Pet Data:', petData);
-
-    if (petData.length === 0) {
-      res.status(404).json({ message: 'No pets found!' });
+    if (!userData) {
+      res.status(400).json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 
-    const pets = petData.map((pet) => pet.get({ plain: true }));
+    const validPassword = await userData.checkPassword(req.body.password);
 
-    res.render('dashboard', { 
-      pets,
-      logged_in: req.session.logged_in 
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = userData.id; // Set the user_id in session
+      req.session.logged_in = true;
+      
+      res.json({ user: userData, message: 'You are now logged in!' });
     });
+
   } catch (err) {
-    console.log('Error retrieving pet profiles:', err);
+    res.status(400).json(err);
+  }
+});
+
+
+// Renders the dashboard page with session logged_in status
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    res.render('dashboard', { logged_in: req.session.logged_in });
+  } catch (err) {
     res.status(500).json(err);
   }
 });
