@@ -1,21 +1,19 @@
 
 <section>
-
-<h1 style="text-align:center">{{pet.name}}</h1>
-
+{{#each pets}}
 <div class="card">
-    <img src="{{pet.profile_picture}}" alt="{{pet.name}}'s Profile Picture" style="width:100%">
-  <p class="title">{{pet.name}}</p>
-  <p>Age: {{pet.age}}</p>
-    <p>Breed: {{pet.breed}}</p>
-    <p>Description: {{pet.description}}</p>
-    <p>Location: {{pet.location}}</p>
-    <p>Interests: {{pet.interests}}</p>
-    <p>Social Media: {{pet.socialMedia}}</p>
+    <img src="{{profile_picture}}" alt="{{name}}'s Profile Picture" style="width:100%">
+  <p class="title">{{name}}</p>
+  <p>Age: {{age}}</p>
+    <p>Breed: {{breed}}</p>
+    <p>Description: {{description}}</p>
+    <p>Location: {{location}}</p>
+    <p>Interests: {{interests}}</p>
+    <p>Social Media: {{socialMedia}}</p>
     <h2>Gallery</h2>
-    <img src="{{pet.picture1}}" alt="Picture 1">
-    <img src="{{pet.picture2}}" alt="Picture" >
-
+    <img src="{{picture1}}" alt="Picture 1">
+    <img src="{{picture2}}" alt="Picture" >
+ {{/each}}
   <div style="margin: 24px 0;">
     <a href="#"><i class="fa fa-dribbble"></i></a> 
     <a href="#"><i class="fa fa-twitter"></i></a>  
