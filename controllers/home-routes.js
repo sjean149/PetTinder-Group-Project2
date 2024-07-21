@@ -2,6 +2,7 @@ const router = require('express').Router();
 // const { User } = require('../models');
 // const { Pet } = require('../models');
 const { User, Pet } = require('../models');
+const { findAll } = require('../models/User');
 const withAuth = require('../utils/auth');
 
 // Renders the start page with session logged_in status
@@ -118,7 +119,9 @@ router.post('/login', async (req, res) => {
 // Renders the dashboard page with session logged_in status
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    res.render('dashboard', { logged_in: req.session.logged_in });
+    const petData = await Pet.findAll( {include: [{model: User}]});
+    const pets = petData.map(pet=>pet.get({plain:true}));
+    res.render('dashboard', {pets, logged_in: req.session.logged_in });
   } catch (err) {
     res.status(500).json(err);
   }

@@ -16,7 +16,11 @@
 <section id="body">
     <ion-icon id="dislike" name="heart-dislike"></ion-icon>
     <div id="swiper">
-
+{{#each pets as |pet|}} 
+<p>
+    {{pet.name}}
+</p>
+{{/each}}
     </div>
     <ion-icon id="like" name="heart"></ion-icon>
 </section>

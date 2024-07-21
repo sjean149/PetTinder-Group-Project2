@@ -9,12 +9,15 @@ router.post('/createProfile', withAuth, async (req, res) => {
             ...req.body,
             user_id: req.session.user_id, // Ensure user_id is correctly set
         });
+        
         res.status(200).json(petData);
     } catch (err) {
         console.log('Error creating pet profile:', err);
         res.status(400).json(err);
     }
 });
+
+
 
 // Route to delete a pet profile
 router.delete('/profile/:id', withAuth, async (req, res) => {
