@@ -5,39 +5,33 @@ const myWidget = cloudinary.createUploadWidget({
   uploadPreset: 'pet_tinder'
 }, (error, result) => {
   if (!error && result && result.event === "success") {
-    imagePath = result.info.url;
-    public_id = result.info.public_id;
-
+    const imagePath = result.info.url;
     document.getElementById(activePicture).value = imagePath;
-
   } else if (error) {
     console.error('Upload Error:', error);
   }
-
 });
 
-
-document.getElementById("profile-picture").addEventListener("click", ()=>{
+document.getElementById("profile-picture").addEventListener("click", () => {
   activePicture = "profile-picture";
   myWidget.open();
 }, false);
-document.getElementById("picture1").addEventListener("click", ()=>{
+
+document.getElementById("picture1").addEventListener("click", () => {
   activePicture = "picture1";
   myWidget.open();
 }, false);
-document.getElementById("picture2").addEventListener("click", ()=>{
+
+document.getElementById("picture2").addEventListener("click", () => {
   activePicture = "picture2";
   myWidget.open();
 }, false);
-
-
 
 const profileFormHandler = async (event) => {
   event.preventDefault();
 
   const name = document.querySelector('#name').value.trim();
   const profilePicture = document.getElementById('profile-picture').value.trim();
-
   const age = document.querySelector('#age').value.trim();
   const description = document.querySelector('#description').value.trim();
   const breed = document.querySelector('#breed').value.trim();
@@ -54,7 +48,7 @@ const profileFormHandler = async (event) => {
         method: 'POST',
         body: JSON.stringify({
           name,
-          profilePicture,
+          profile_picture: profilePicture, // Ensure field names match
           age,
           description,
           breed,
@@ -62,7 +56,7 @@ const profileFormHandler = async (event) => {
           picture2,
           location,
           interests,
-          socialMedia
+          social_media: socialMedia // Ensure field names match
         }),
         headers: { 'Content-Type': 'application/json' },
       });
@@ -94,7 +88,7 @@ const delButtonHandler = async (event) => {
     const id = event.target.getAttribute('data-id');
 
     try {
-      const response = await fetch(`/profile/${id}`, {
+      const response = await fetch(`/api/pets/profile/${id}`, { // Correct endpoint
         method: 'DELETE',
       });
 
@@ -114,5 +108,4 @@ document.querySelectorAll('.button.is-pulled-right').forEach(button => {
   button.addEventListener('click', delButtonHandler);
 });
 
-  document.getElementById('profile-form').addEventListener('submit', profileFormHandler);
-
+document.getElementById('profile-form').addEventListener('submit', profileFormHandler);

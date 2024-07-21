@@ -29,8 +29,11 @@ router.get('/login', async (req, res) => {
 // Renders the profile page with session logged_in status and includes pet data
 router.get('/profile', withAuth, async (req, res) => {
   try {
-    // Fetch all pets with associated user data
+    // Fetch pets associated with the logged-in user
     const petData = await Pet.findAll({
+      where: {
+        user_id: req.session.user_id, // Use the logged-in user's ID
+      },
       include: [
         {
           model: User,
@@ -80,6 +83,34 @@ router.get('/profile/:id', withAuth, async (req, res) => {
   } catch (err) {
       console.log(err);
       res.status(500).json(err);
+  }
+});
+
+router.post('/login', async (req, res) => {
+  try {
+    const userData = await User.findOne({ where: { email: req.body.email } });
+
+    if (!userData) {
+      res.status(400).json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    const validPassword = await userData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = userData.id; // Set the user_id in session
+      req.session.logged_in = true;
+      
+      res.json({ user: userData, message: 'You are now logged in!' });
+    });
+
+  } catch (err) {
+    res.status(400).json(err);
   }
 });
 
