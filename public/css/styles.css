@@ -7,35 +7,47 @@ body {
 #Tendr {
     color: #ffffff;
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffb301+0,f99345+34,f99345+35,f99345+35,ffb301+50,eb6e01+51,ffb301+75,c85d00+100 */
-    background: linear-gradient(135deg,  #ffb301 0%,#f99345 34%,#f99345 35%,#f99345 35%,#ffb301 50%,#eb6e01 51%,#ffb301 75%,#c85d00 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: linear-gradient(135deg, #ffb301 0%, #f99345 34%, #f99345 35%, #f99345 35%, #ffb301 50%, #eb6e01 51%, #ffb301 75%, #c85d00 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 
 /* Ensure the page fills the viewport */
-html, body {
+html,
+body {
     height: 100%;
 }
 
 .page-container {
-    min-height: 100%; 
+    min-height: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .hero {
-    width:700px;
-    height: 500px;
+    width: 100vw;
+    height: 80vh;
     background-image: url(../assets/proj.jpg);
     background-size: cover;
     background-position: center;
+    position: relative;
+}
 
+.login-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 
 /* //footer */
 
 footer {
-background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 .footerContainer {
@@ -83,9 +95,9 @@ background-color: #ffffff;
 
 .footernav ul {
 
-display: flex;
-justify-content: center;
-list-style-type: none;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
 }
 
 .footernav ul li a {
@@ -98,7 +110,7 @@ list-style-type: none;
 }
 
 .footernav ul li a:hover {
-opacity: 1;
+    opacity: 1;
 
 }
 
@@ -124,9 +136,10 @@ opacity: 1;
     .footernav ul {
         flex-direction: column;
     }
-   .footernav ul li {
-    width: 100%;
-    text-align: center;
-    margin: 10px;
-   } 
+
+    .footernav ul li {
+        width: 100%;
+        text-align: center;
+        margin: 10px;
+    }
 }
