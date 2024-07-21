@@ -1,92 +1,10 @@
-<!-- <header>
-  <h1>{{username}}</h1>
-</header>
-{{#each pets}}
-<section class="profile-header">
-  <div class="profile-info">
-    <img src="{{profilePicture}}" alt="{{name}}'s profile picture" class="profile-pic">
-    <div class="profile-description">
-      <h2>{{name}}</h2>
-      <p>{{description}}</p>
-      <div><strong>Age:</strong> {{age}}</div>
-      <div><strong>Breed:</strong> {{breed}}</div>
-      <div><strong>Location:</strong> {{location}}</div>
-      <div><strong>Interests:</strong> {{interests}}</div>
-    </div>
-    <div>
-      <button class="button is-pulled-right has-text-danger mt-2 mr-5" data-id="{{id}}">DELETE</button>
-    </div>
-  </div>
-</section>
 
-<section class="picture-grid">
-  {{#if picture1}}
-  <div class="pictures">
-    <img src="{{picture1}}" alt="Photo 1">
-  </div>
-  {{/if}}
-  {{#if picture2}}
-  <div class="pictures">
-    <img src="{{picture2}}" alt="Photo 2">
-  </div>
-  {{/if}}
-</section>
--->
+<section>
 
-
-<head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<style>
-.card {
-  box-shadow: 0 4px 8px 0 #00000033;
-  max-width: 600px;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-}
-
-.title {
-  color: grey;
-  font-size: 18px;
-}
-
-button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-
-p {
-  font-size: 20px;
-  display: block;
-}
-
-button:hover, a:hover {
-  opacity: 0.7;
-}
-</style>
-</head>
-<body>
-
-<h2 style="text-align:center">{{pet.name}}</h2>
+<h1 style="text-align:center">{{pet.name}}</h1>
 
 <div class="card">
     <img src="{{pet.profilePicture}}" alt="{{pet.name}}'s Profile Picture" style="width:100%">
-  <h1></h1>
   <p class="title">{{pet.name}}</p>
   <p>Age: {{pet.age}}</p>
     <p>Breed: {{pet.breed}}</p>
@@ -104,10 +22,11 @@ button:hover, a:hover {
     <a href="#"><i class="fa fa-linkedin"></i></a>  
     <a href="#"><i class="fa fa-facebook"></i></a> 
   </div>
-  <p><button>Contact</button></p>
+  <button>Contact</button>
 </div>
-
-
+</section>
+<link rel="stylesheet" href="/css/profile.css">
+{{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
 
 
 
