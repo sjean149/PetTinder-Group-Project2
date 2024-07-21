@@ -39,6 +39,7 @@ const profileFormHandler = async (event) => {
   const picture2 = document.querySelector('#picture2').value.trim();
   const location = document.querySelector('#location').value.trim();
   const interests = document.querySelector('#interests').value.trim();
+
   const socialMedia = document.getElementById('social-media').value.trim();
 
   if (name && profilePicture && age && description && breed && location && interests && socialMedia) {
@@ -60,14 +61,19 @@ const profileFormHandler = async (event) => {
         headers: { 'Content-Type': 'application/json' },
       });
 
+      if (response.redirected) {
+        console.log(`Response url`, response.url);
+        window.location.href = response.url;
+    }
+    /*
       if (response.ok) {
-        const petData = await response.json();
-        alert(`${petData.name} created successfully. It is such a cute ${petData.breed}!`);
-        document.location.replace('/dashboard');
+        console.log(`should have redirected`);
+        //const petData = await response.json();
+        //alert(`${petData.name} created successfully. It is such a cute ${petData.breed}!`);
       } else {
         const errorData = await response.json();
         alert(`Failed to create profile: ${errorData.message || response.statusText}`);
-      }
+      } */
     } catch (err) {
       console.error('Error during profile creation:', err);
       alert('Failed to create profile. Please try again later.');

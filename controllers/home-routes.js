@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const { User } = require('../models');
+const { Pet } = require('../models');
 const { User, Pet } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -61,6 +63,26 @@ router.get('/profile', withAuth, async (req, res) => {
     // Log error and send response
     console.log('Error retrieving pet profiles:', err);
     res.status(500).json(err);
+  }
+});
+
+// Route to render the pet profile page
+router.get('/profile/:id', withAuth, async (req, res) => {
+  try {
+      const petData = await Pet.findByPk(req.params.id);
+
+      if (!petData) {
+          res.status(404).json({ message: 'No pet found with this id!' });
+          return;
+      }
+
+      const pet = petData.toJSON();
+      console.log(pet);
+
+      res.render('profile', { pet, logged_in: req.session.logged_in });
+  } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
   }
 });
 
