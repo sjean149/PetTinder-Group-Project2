@@ -14,7 +14,7 @@ if (process.env.DB_URL) {
     {
       host: 'localhost',     
       dialect: 'postgres',
-      port:5433    
+      port:5432    
     }
   );
 }
