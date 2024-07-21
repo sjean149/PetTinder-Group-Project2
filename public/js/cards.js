@@ -1,5 +1,7 @@
+// Card Class
 class Card {
     constructor({
+        element,
         onDismiss,
         onLike,
         onDislike
@@ -7,6 +9,7 @@ class Card {
         this.onDismiss = onDismiss;
         this.onLike = onLike;
         this.onDislike = onDislike;
+        this.element = element;
         this.#init();
     }
 
@@ -20,14 +23,8 @@ class Card {
             (navigator.maxTouchPoints > 0) ||
             (navigator.msMaxTouchPoints > 0));
     }
-    //CARD CREATOR
+
     #init = () => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        const img = document.createElement('img');
-        img.src = this.imageUrl;
-        card.append(img);
-        this.element = card;
         if (this.#isTouchDevice()) {
             this.#listenToTouchEvents();
         } else {
@@ -128,3 +125,63 @@ class Card {
         }
     }
 }
+
+// DOM
+const swiper = document.querySelector('#swiper');
+const like = document.querySelector('#like');
+const dislike = document.querySelector('#dislike');
+
+// variables
+let cardCount = 0;
+const cardElements = document.querySelectorAll('.card');
+let currentIndex = 0;
+
+// functions
+function initializeCard(cardElement) {
+    const card = new Card({
+        element: cardElement,
+        onDismiss: () => {
+            currentIndex = (currentIndex + 1) % cardElements.length;
+            loadProfile(currentIndex);
+        },
+        onLike: () => {
+            like.style.animationPlayState = 'running';
+            like.classList.toggle('trigger');
+        },
+        onDislike: () => {
+            dislike.style.animationPlayState = 'running';
+            dislike.classList.toggle('trigger');
+        }
+    });
+    swiper.appendChild(card.element);
+    cardCount++;
+
+    const cards = swiper.querySelectorAll('.card:not(.dismissing)');
+    cards.forEach((card, index) => {
+        card.style.setProperty('--i', index);
+    });
+}
+
+function loadProfile(index) {
+    swiper.innerHTML = ''; // Clear previous card
+    initializeCard(cardElements[index]);
+}
+
+function handlePageClick(event) {
+    const pageWidth = window.innerWidth;
+    const clickX = event.clientX;
+
+    if (clickX > pageWidth / 2) {
+        // Like profile
+        like.classList.toggle('trigger');
+    } else {
+        // Dislike profile
+        dislike.classList.toggle('trigger');
+    }
+}
+
+// Event Listener
+document.addEventListener('click', handlePageClick);
+
+// Initialize the first profile
+loadProfile(currentIndex);
