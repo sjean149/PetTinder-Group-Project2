@@ -136,7 +136,7 @@ try {
   // Serialize the pet data
   const pets = petData.map((pet) => pet.get({ plain: true }));
   
-  const users = pets.filter(user => user.id !== req.session.user_id)
+  // const users = pets.filter(user => user.id !== req.session.user_id)
   // Render the profile page with pet data
   res.render('dashboard', { 
     pets,
