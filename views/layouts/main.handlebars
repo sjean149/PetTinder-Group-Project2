@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pet-Tinder</title>
+  <title>Tendr</title>
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
@@ -16,18 +16,33 @@
     <nav>
       <div>
           {{#if logged_in}}
-            <h1 id="Tendr" class="title is-1"> Tendr <i class="fa fa-paw"></i><a class="button is-pulled-right has-text-danger mt-2 mr-5" id="logout">logout</a></h1>
-            
-            <div class="panel has-background-black-ter">
-              <div class="panel-tabs has-text-warning ">
-                <a class="is-active" href="/dashboard">Dashboard</a>
-                <a class="is-active" href="/profile"> My Profile</a>
-                <a class="is-active" href="/createProfile">Add Pet!</a>
-              </div>
+            <div id="TendrHeader">
+              <h1><img id="TendrLogo" src="../assets/Tendr_Logo.png" alt="Tendr_Logo"><a class="button is-pulled-right has-text-danger mt-1 mr-5" id="logout">logout</a></h1>
             </div>
+
+              <div class="panels">
+                <div class="panel-tabs has-text-warning">
+                      <a class="is-active" href="/dashboard">Dashboard</a>
+                      <a class="is-active" href="/profile"> My Profile</a>
+                      <a class="is-active" href="/createProfile">Add Pet!</a>
+                </div>
+              </div>
             
           {{else}}
-            <h1 id="Tendr" class="title is-1"> Tendr <i class="fa fa-paw"></i><a class="button is-pulled-right has-text-danger mt-2 mr-5" href="/login">Log In/Sign Up</a></h1>
+            <div id="TendrHeader">
+              <img id="TendrLogo" src="../assets/Tendr_Logo.png" alt="Tendr_Logo">
+              <a class="button is-pulled-right has-text-danger mt-1 mr-5" href="/login">Log In/Sign Up</a>
+            </div>
+
+              <div class="panels">
+                <div class="panel-tabs has-text-warning">
+                      <a class="is-active" href="/login">Dashboard</a>
+                      <a class="is-active" href="/login"> My Profile</a>
+                      <a class="is-active" href="/login">Add Pet!</a>
+                </div>
+              </div>
+              
+
           {{/if}}
       </div>
     </nav>

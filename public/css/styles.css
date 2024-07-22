@@ -4,9 +4,42 @@ body {
 }
 
 /* Stylised Header Bar */
-#Tendr {
+#TendrHeader {
+    position: relative;
     color: #ffffff;
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffb301+0,f99345+34,f99345+35,f99345+35,ffb301+50,eb6e01+51,ffb301+75,c85d00+100 */
-    background: linear-gradient(135deg,  #ffb301 0%,#f99345 34%,#f99345 35%,#f99345 35%,#ffb301 50%,#eb6e01 51%,#ffb301 75%,#c85d00 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#161718+30,45484d+50,000000+70 */
+    background: linear-gradient(135deg,  #161718 30%,#45484d 50%,#000000 70%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
 }
 
+#StartBG {
+    position: absolute;
+}
+
+#TendrBG {
+    position: absolute;
+    max-width: 85.6%;
+    display: block;
+    margin: auto;
+    left: 0; top: 0; right: 0; bottom: 0;
+}
+
+#TendrLogo {
+    position: absolute;
+    max-width: 120px;
+    margin: 8px;
+}
+
+#StartMessage {
+    color: hwb(348 22% 0%);
+    background-color: #ffb22377;
+    font-size: large;
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    text-shadow: #1f2229 1.5px 1.5px;
+}
+
+#login {
+    background-image: url('/assets/Tendr_BG.png');
+}
