@@ -31,7 +31,7 @@ const profileFormHandler = async (event) => {
       });
     };
   
-    // Submit form after getting location.
+
     try {
       const { latitude, longitude } = await getLocation();
       const location = `${latitude},${longitude}`;

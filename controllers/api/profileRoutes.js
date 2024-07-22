@@ -2,13 +2,14 @@ const router = require('express').Router();
 const { Pet } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// Route to create a pet profile
+
 router.post('/createProfile', withAuth, async (req, res) => {
     try {
         const petData = await Pet.create({
             ...req.body,
-            user_id: req.session.user_id, // Ensure user_id is correctly set
+            user_id: req.session.user_id, 
         });
+        
         res.status(200).json(petData);
     } catch (err) {
         console.log('Error creating pet profile:', err);
@@ -16,13 +17,12 @@ router.post('/createProfile', withAuth, async (req, res) => {
     }
 });
 
-// Route to delete a pet profile
 router.delete('/profile/:id', withAuth, async (req, res) => {
     try {
         const deletedPetCount = await Pet.destroy({
             where: {
                 id: req.params.id,
-                user_id: req.session.user_id, // Ensure user_id is correctly checked
+                user_id: req.session.user_id, 
             },
         });
 

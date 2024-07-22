@@ -23,7 +23,7 @@ Pet.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    profile_picture: { // Ensure this field name matches the front end
+    profile_picture: { 
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -52,7 +52,7 @@ Pet.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    social_media: { // Ensure this field name matches the front end
+    social_media: { 
       type: DataTypes.STRING,
       allowNull: true,
     },
