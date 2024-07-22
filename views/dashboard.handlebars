@@ -1,30 +1,20 @@
-{{!-- <div id="profile-container">
-    {{#each profiles}}
-    <div class="profile-card">
-        <img src="{{image}}" alt="{{name}}'s profile picture">
-        <h2>{{name}}, {{age}}</h2>
-        <p>{{bio}}</p>
-        <div class="actions">
-            <button class="dislike-btn" data-id="{{id}}">Dislike</button>
-            <button class="like-btn" data-id="{{id}}">Like</button>
+<section id="body">
+<ion-icon id="dislike" name="heart-dislike"></ion-icon>
+
+<div id="swiper">
+    {{#each pets}}
+    <div class="card" data-user="{{this.user_id}}" data-pet="{{this.id}}">
+        <div class="card-content">
+            <h2>{{this.name}}</h2>
         </div>
+        <img src="{{this.profile_picture}}" alt="{{this.name}}">
     </div>
     {{/each}}
-</div> --}}
+</div>
 
-{{!-- new dashboards cards --}}
-<section id="body">
-    <ion-icon id="dislike" name="heart-dislike"></ion-icon>
-    <div id="swiper">
-
-    </div>
-    <ion-icon id="like" name="heart"></ion-icon>
+<ion-icon id="like" name="heart"></ion-icon>
 </section>
-
-
-
 <link rel="stylesheet" href="/css/cards.css">
 <script src="./js/cards.js"></script>
-<script src="./js/moveCards.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

@@ -11,7 +11,6 @@ body {
     background: linear-gradient(135deg,  #161718 30%,#45484d 50%,#000000 70%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
 }
-
 #StartBG {
     position: absolute;
 }
@@ -42,4 +41,141 @@ body {
 
 #login {
     background-image: url('/assets/Tendr_BG.png');
+}
+
+/* Ensure the page fills the viewport */
+html,
+body {
+    height: 100%;
+}
+
+.page-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero {
+    width: 100vw;
+    height: 80vh;
+    background-image: url(../assets/proj.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.login-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* //footer */
+
+footer {
+    background-color: #ffffff;
+}
+
+.footerContainer {
+    width: 100%;
+    padding: 40px 30px 20px;
+}
+
+
+.socialIcons {
+    display: flex;
+    justify-content: center;
+
+}
+
+.socialIcons a {
+    text-decoration: none;
+    padding: 10px;
+    background-color: #f0f0f0;
+    margin: 10px;
+    border-radius: 50%;
+}
+
+.socialIcons a i {
+    font-size: 2em;
+    color: black;
+    opacity: 0.9;
+}
+
+/* hover effects on socialIcons */
+
+.socialIcons a:hover {
+    background-color: #1f2229;
+    transition: 0.5s;
+}
+
+.socialIcons a:hover i {
+    color: #f0f0f0;
+    transition: 0.5s;
+}
+
+
+
+
+
+
+
+.footernav {
+    margin: 10px 0;
+}
+
+.footernav ul {
+
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.footernav ul li a {
+    color: #080101;
+    margin: 20px;
+    text-decoration: none;
+    font-size: 1.3em;
+    opacity: 0.7;
+    transition: 0.5s;
+}
+
+.footernav ul li a:hover {
+    opacity: 1;
+
+}
+
+
+.footerbottom {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.footerbottom p {
+    color: #110101;
+}
+
+.footernav a:hover {
+    color: #c85d00;
+}
+
+
+
+
+@media (max-width: 700px) {
+    .footernav ul {
+        flex-direction: column;
+    }
+
+    .footernav ul li {
+        width: 100%;
+        text-align: center;
+        margin: 10px;
+    }
 }

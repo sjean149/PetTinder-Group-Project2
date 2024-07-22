@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Pet } = require('../models');
+const { User, Pet, UserLike } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Renders the start page with session logged_in status
@@ -27,10 +27,9 @@ router.get('/login', async (req, res) => {
 // Renders the profile page with session logged_in status and includes pet data
 router.get('/profile', withAuth, async (req, res) => {
   try {
-    // Fetch pets associated with the logged-in user
     const petData = await Pet.findAll({
       where: {
-        user_id: req.session.user_id, // Use the logged-in user's ID
+        user_id: req.session.user_id,
       },
       include: [
         {
@@ -40,26 +39,41 @@ router.get('/profile', withAuth, async (req, res) => {
       ],
     });
 
-    // Log pet data for debugging
     console.log('Pet Data:', petData);
 
-    // Check if no pets are found
     if (petData.length === 0) {
       res.status(404).json({ message: 'No pets found!' });
       return;
     }
 
-    // Serialize the pet data
     const pets = petData.map((pet) => pet.get({ plain: true }));
 
-    // Render the profile page with pet data
     res.render('profile', { 
       pets,
       logged_in: req.session.logged_in 
     });
   } catch (err) {
-    // Log error and send response
     console.log('Error retrieving pet profiles:', err);
+    res.status(500).json(err);
+  }
+});
+
+// Route to render the pet profile page
+router.get('/profile/:id', withAuth, async (req, res) => {
+  try {
+    const petData = await Pet.findByPk(req.params.id);
+
+    if (!petData) {
+      res.status(404).json({ message: 'No pet found with this id!' });
+      return;
+    }
+
+    const pet = petData.toJSON();
+    console.log(pet);
+
+    res.render('profile', { pet, logged_in: req.session.logged_in });
+  } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -92,12 +106,31 @@ router.post('/login', async (req, res) => {
   }
 });
 
-
 // Renders the dashboard page with session logged_in status
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    res.render('dashboard', { logged_in: req.session.logged_in });
+    const petData = await Pet.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    if (petData.length === 0) {
+      res.status(404).json({ message: 'No pets found!' });
+      return;
+    }
+
+    const pets = petData.map((pet) => pet.get({ plain: true }));
+
+    res.render('dashboard', { 
+      pets,
+      logged_in: req.session.logged_in 
+    });
   } catch (err) {
+    console.log('Error retrieving pet profiles:', err);
     res.status(500).json(err);
   }
 });
@@ -115,8 +148,39 @@ router.get('/createProfile', withAuth, async (req, res) => {
 // Renders the chatsLikes page with session logged_in status
 router.get('/chatsLikes', async (req, res) => {
   try {
-    res.render('chatsLikes', { logged_in: req.session.logged_in });
+    // Fetch likes associated with the logged-in user
+    const likeData = await UserLike.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    // Log like data for debugging
+    console.log('Like Data:', likeData);
+
+    // Check if no likes are found
+    if (likeData.length === 0) {
+      res.status(404).json({ message: 'No likes found!' });
+      return;
+    }
+
+    // Serialize the like data
+    const likes = likeData.map((like) => like.get({ plain: true }));
+
+    // Render the profile page with like data
+    res.render('chatsLikes', { 
+      likes,
+      logged_in: req.session.logged_in 
+    });
   } catch (err) {
+    // Log error and send response
+    console.log('Error retrieving likes:', err);
     res.status(500).json(err);
   }
 });

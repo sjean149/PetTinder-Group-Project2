@@ -1,5 +1,12 @@
-<div id="StartBG" style="display: flex;">
-    <img id="TendrBG" src="./assets/Tendr_BG.png" alt="Tendr_Background" width="2400px" height="1600px">
-    <img id="TendrSidebars" src="./assets/Tendr_Sidebars.png" alt="Tendr_Background" width="2400px" height="1600px">
-    <p id="StartMessage" class="button">Sign Up or Log In to start!</p>
+<div class="page-container">
+    <div class="hero">
+        {{#if logged_in}} 
+        <p></p>
+        {{else}}
+        <a class=" has-text-danger mt-2 mr-5 login-button" href="/login">Log In/Sign Up</a>
+         {{/if}}
+    </div>
 </div>
+{{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
