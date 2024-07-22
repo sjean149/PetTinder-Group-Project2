@@ -2,10 +2,8 @@ const router = require('express').Router();
 const { UserLike } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// Route to save a like
 router.post('/chatLikes', withAuth, async (req, res) => {
     try {
-        // Create a new like record
 
         const newLike = await UserLike.create({
             user_id: req.session.user_id,

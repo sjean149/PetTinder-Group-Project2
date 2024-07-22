@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-// Route: POST /api/users - User Creation
+
 router.post('/', async (req, res) => {
-  //console.log(`user id`, req.body.user_id);
   try {
     const userData = await User.create(req.body);
     req.session.save(() => {
@@ -17,7 +16,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Route: POST /api/users/login - User Login
 router.post('/login', async (req, res) => {
  
   try {
@@ -39,7 +37,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Route: POST /api/users/logout - User Logout
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
