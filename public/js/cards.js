@@ -58,7 +58,7 @@ class Card {
 
         document.addEventListener('mouseup', this.#handleMoveUp);
 
-        // prevent card from being dragged
+        
         this.element.addEventListener('dragstart', (e) => {
             e.preventDefault();
         });
@@ -116,7 +116,7 @@ class Card {
         this.#offsetY = y - this.#startPoint.y;
         const rotate = this.#offsetX * 0.1;
         this.element.style.transform = `translate(${this.#offsetX}px, ${this.#offsetY}px) rotate(${rotate}deg)`;
-        // dismiss card
+        
         if (Math.abs(this.#offsetX) > this.element.clientWidth * 0.7) {
             this.#dismiss(this.#offsetX > 0 ? 1 : -1);
         }
@@ -150,7 +150,7 @@ class Card {
     }
 }
 
-// DOM
+
 const swiper = document.querySelector('#swiper');
 const like = document.querySelector('#like');
 const dislike = document.querySelector('#dislike');

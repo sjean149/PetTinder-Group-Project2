@@ -4,8 +4,7 @@ const loginFormHandler = async (event) => {
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
-  // Validate email and password
-  if (email && password) {
+if (email && password) {
     try {
       const response = await fetch('/api/users/login', {
         method: 'POST',
@@ -24,7 +23,6 @@ const loginFormHandler = async (event) => {
   }
 };
 
-// Function to handle signup form submission
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
@@ -32,7 +30,7 @@ const signupFormHandler = async (event) => {
   const email = document.querySelector('#email-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
 
-  // Validate name, email, and password
+
   if (name && email && password) {
     try {
       const response = await fetch('/api/users', {

@@ -48,7 +48,7 @@ const profileFormHandler = async (event) => {
         method: 'POST',
         body: JSON.stringify({
           name,
-          profile_picture: profilePicture, // Ensure field names match
+          profile_picture: profilePicture,
           age,
           description,
           breed,
@@ -56,11 +56,16 @@ const profileFormHandler = async (event) => {
           picture2,
           location,
           interests,
-          social_media: socialMedia // Ensure field names match
+          social_media: socialMedia
         }),
         headers: { 'Content-Type': 'application/json' },
       });
 
+      if (response.redirected) {
+        console.log(`Response url`, response.url);
+        window.location.href = response.url;
+    }
+    
       /*
             if (response.redirected) {
               response.
@@ -88,26 +93,26 @@ const profileFormHandler = async (event) => {
   }
 };
 
-const delButtonHandler = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
+// const delButtonHandler = async (event) => {
+//   if (event.target.hasAttribute('data-id')) {
+//     const id = event.target.getAttribute('data-id');
 
-    try {
-      const response = await fetch(`/api/pets/profile/${id}`, { // Correct endpoint
-        method: 'DELETE',
-      });
+//     try {
+//       const response = await fetch(`/api/pets/profile/${id}`, { 
+//         method: 'DELETE',
+//       });
 
-      if (response.ok) {
-        document.location.replace('/profile');
-      } else {
-        alert('Failed to delete pet');
-      }
-    } catch (err) {
-      console.error('Error deleting pet:', err);
-      alert('An error occurred while deleting the pet');
-    }
-  }
-};
+//       if (response.ok) {
+//         document.location.replace('/profile');
+//       } else {
+//         alert('Failed to delete pet');
+//       }
+//     } catch (err) {
+//       console.error('Error deleting pet:', err);
+//       alert('An error occurred while deleting the pet');
+//     }
+//   }
+// };
 
 document.querySelectorAll('.button.is-pulled-right').forEach(button => {
   button.addEventListener('click', delButtonHandler);
