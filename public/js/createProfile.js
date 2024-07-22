@@ -66,6 +66,24 @@ const profileFormHandler = async (event) => {
         window.location.href = response.url;
     }
     
+      /*
+            if (response.redirected) {
+              response.
+              window.location.href = response.url;
+          }
+              */
+
+      if (response.ok) {
+        console.log(`should have redirected`);
+        const petData = await response.json();
+        alert(`${petData.name} created successfully. It is such a cute ${petData.breed}!`);
+
+        document.location.replace(`/profile/${petData.id}`);
+
+      } else {
+        const errorData = await response.json();
+        alert(`Failed to create profile: ${errorData.message || response.statusText}`);
+      }
     } catch (err) {
       console.error('Error during profile creation:', err);
       alert('Failed to create profile. Please try again later.');
