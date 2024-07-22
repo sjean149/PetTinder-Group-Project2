@@ -9,6 +9,7 @@ router.post('/createProfile', withAuth, async (req, res) => {
             ...req.body,
             user_id: req.session.user_id, 
         });
+        
         res.status(200).json(petData);
     } catch (err) {
         console.log('Error creating pet profile:', err);
