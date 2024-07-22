@@ -2,7 +2,6 @@ const User = require('./User');
 const Pet = require('./Pet');
 const UserLike = require('./UserLike')
 
-// Set up associations
 User.hasMany(Pet, {
   foreignKey: 'user_id',
   onDelete: 'CASCADE'

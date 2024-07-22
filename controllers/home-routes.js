@@ -2,7 +2,6 @@ const router = require('express').Router();
 const { User, Pet, UserLike } = require('../models');
 const withAuth = require('../utils/auth');
 
-// Renders the start page with session logged_in status
 router.get('/', async (req, res) => {
   try {
     res.render('startPage', { logged_in: req.session.logged_in });
@@ -11,7 +10,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Redirects to dashboard if already logged in; otherwise, renders the login page
 router.get('/login', async (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/dashboard');
@@ -24,7 +22,6 @@ router.get('/login', async (req, res) => {
   }
 });
 
-// Renders the profile page with session logged_in status and includes pet data
 router.get('/profile', withAuth, async (req, res) => {
   try {
     const petData = await Pet.findAll({
@@ -58,7 +55,7 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
-// Route to render the pet profile page
+
 router.get('/profile/:id', withAuth, async (req, res) => {
   try {
     const petData = await Pet.findByPk(req.params.id);
@@ -78,35 +75,6 @@ router.get('/profile/:id', withAuth, async (req, res) => {
   }
 });
 
-router.post('/login', async (req, res) => {
-  try {
-    const userData = await User.findOne({ where: { email: req.body.email } });
-
-    if (!userData) {
-      res.status(400).json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
-
-    const validPassword = await userData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res.status(400).json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
-
-    req.session.save(() => {
-      req.session.user_id = userData.id; // Set the user_id in session
-      req.session.logged_in = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
-
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-// Renders the dashboard page with session logged_in status
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const petData = await Pet.findAll({
@@ -135,7 +103,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
-// Renders the createProfile page with session logged_in status
+
 router.get('/createProfile', withAuth, async (req, res) => {
   try {
     console.log(req.session);
@@ -145,44 +113,39 @@ router.get('/createProfile', withAuth, async (req, res) => {
   }
 });
 
-// Renders the chatsLikes page with session logged_in status
+
 router.get('/chatsLikes', async (req, res) => {
   try {
-    // Fetch likes associated with the logged-in user
     const likeData = await UserLike.findAll({
       where: {
         user_id: req.session.user_id,
       },
       include: [
         {
-          model: User,
-          attributes: ['name'],
+          model: Pet,
+          attributes: ['name', 'profile_picture'],
         },
       ],
     });
 
-    // Log like data for debugging
-    console.log('Like Data:', likeData);
+    console.log('Like Data:', JSON.stringify(likeData, null, 2));
 
-    // Check if no likes are found
     if (likeData.length === 0) {
       res.status(404).json({ message: 'No likes found!' });
       return;
     }
 
-    // Serialize the like data
     const likes = likeData.map((like) => like.get({ plain: true }));
 
-    // Render the profile page with like data
     res.render('chatsLikes', { 
       likes,
       logged_in: req.session.logged_in 
     });
   } catch (err) {
-    // Log error and send response
     console.log('Error retrieving likes:', err);
     res.status(500).json(err);
   }
 });
+
 
 module.exports = router;
