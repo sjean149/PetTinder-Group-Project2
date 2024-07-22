@@ -6,10 +6,10 @@ const withAuth = require('../../utils/auth');
 router.post('/chatLikes', withAuth, async (req, res) => {
     try {
         // Create a new like record
+
         const newLike = await UserLike.create({
-            ...req.body,
             user_id: req.session.user_id,
-            pet_id: req.session.pet_id
+            pet_id: req.body.pet_id
         });
 
         res.status(200).json(newLike);
