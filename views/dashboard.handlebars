@@ -3,7 +3,7 @@
 
 <div id="swiper">
     {{#each pets}}
-    <div class="card">
+    <div class="card" data-user="{{this.user_id}}" data-pet="{{this.id}}">
         <div class="card-content">
             <h2>{{this.name}}</h2>
         </div>
