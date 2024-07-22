@@ -1,4 +1,3 @@
-
 class Card {
     constructor({
         element,
@@ -90,7 +89,6 @@ class Card {
     }
 
     #sendLikeToServer = async () => {
-   
         try {
             const response = await fetch('/api/likes/chatLikes', {
                 method: 'POST',
@@ -102,7 +100,7 @@ class Card {
                     pet_id: this.pet_id
                 }),
             });
-
+            console.log(response)
             if (!response.ok) {
                 throw new Error('Failed to send like to server');
             }
@@ -150,7 +148,6 @@ class Card {
         document.removeEventListener('touchmove', this.#handleTouchMove);
         this.element.style.transform = '';
     }
-
 }
 
 // DOM
@@ -167,7 +164,7 @@ cardElements.forEach((cardElement) => {
     const user_id = cardElement.getAttribute('data-user');
     const pet_id = cardElement.getAttribute('data-pet');
     console.log('User ID:', user_id);
-    console.log('Pet ID:', pet_id)
+    console.log('Pet ID:', pet_id);
     new Card({
         element: cardElement,
         onDismiss: () => {
