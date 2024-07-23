@@ -113,14 +113,9 @@ router.get('/createProfile', withAuth, async (req, res) => {
   }
 });
 
-router.get('/chatsLikes', withAuth, async (req, res) => {
-  try {
-    // Ensure the user is logged in and the session has a user ID
-    if (!req.session.user_id) {
-      return res.status(401).json({ message: 'User not logged in' });
-    }
 
-    // Fetch likes from the database
+router.get('/chatsLikes', async (req, res) => {
+  try {
     const likeData = await UserLike.findAll({
       where: {
         user_id: req.session.user_id,
@@ -135,25 +130,22 @@ router.get('/chatsLikes', withAuth, async (req, res) => {
 
     console.log('Like Data:', JSON.stringify(likeData, null, 2));
 
-    // Check if any likes were found
     if (likeData.length === 0) {
       res.status(404).json({ message: 'No likes found!' });
       return;
     }
 
-    // Map and format the data for the view
     const likes = likeData.map((like) => like.get({ plain: true }));
 
-    // Render the view with the like data
     res.render('chatsLikes', { 
       likes,
       logged_in: req.session.logged_in 
     });
   } catch (err) {
     console.log('Error retrieving likes:', err);
-    res.status(500).json({ error: 'Failed to retrieve likes', details: err.message });
+    res.status(500).json(err);
   }
 });
 
-module.exports = router;
 
+module.exports = router;
