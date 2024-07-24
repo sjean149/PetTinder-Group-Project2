@@ -36,7 +36,31 @@ const petData = [
     "picture2": "amiko_pic2.jpg",
     "location": "New York",
     "interests": "Running, digging"
-  }
+  },
+  {
+    "user_id": 4,
+    "name": "Draco",
+    "profilePicture": "sephora_profile.jpg",
+    "age": 5,
+    "description": "Friendly and playful!",
+    "breed": "Labrador Retriever",
+    "picture1": "sephora_pic1.jpg",
+    "picture2": "sephora_pic2.jpg",
+    "location": "Miami",
+    "interests": "Fetch, swimming"
+  },
+  {
+    "user_id": 5,
+    "name": "Misa",
+    "profilePicture": "sephora_profile.jpg",
+    "age": 5,
+    "description": "Friendly and playful!",
+    "breed": "Labrador Retriever",
+    "picture1": "sephora_pic1.jpg",
+    "picture2": "sephora_pic2.jpg",
+    "location": "Miami",
+    "interests": "Fetch, swimming"
+  },
 ];
 
 const seedPets = async () => await Pet.bulkCreate(petData);

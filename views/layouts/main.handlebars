@@ -16,19 +16,33 @@
     <nav>
       <div>
           {{#if logged_in}}
-             <h1 id="Tendr" class="title is-1"> Tendr <i class="fa fa-paw"></i><a class="button is-pulled-right has-text-danger mt-2 mr-5" id="logout">logout</a></h1>
+             <div id="TendrHeader">
+              <a href="/"><img id="TendrLogo" src="../assets/Tendr_Logo.png" alt="Tendr_Logo"></a>
+              <a class="button is-pulled-right has-text-danger mt-1 mr-5" id="logout">Log Out</a>
+            </div>
 
-            <div class="panel has-background-black-ter">
+            <div class="panel has-text-warning">
               <div class="panel-tabs has-text-warning ">
                 <a class="is-active" href="/dashboard">Dashboard</a>
                 <a class="is-active" href="/profile"> My Profile</a>
-                <a class="is-active" href="/createProfile">Add Pet!</a>
+                <a class="is-active" href="/createProfile">Add Pet</a>
                 <a class="is-active" href="/chatsLikes">Chats</a>
               </div>
             </div>
             
           {{else}}
-           <h1 id="Tendr" class="title is-1"> Tendr <i class="fa fa-paw"></i></h1>
+           <a href="/"><img id="TendrLogo" src="../assets/Tendr_Logo.png" alt="Tendr_Logo"></a>
+              <a class="button is-pulled-right has-text-danger mt-1 mr-5" href="/login">Log In/Sign Up</a>
+            </div>
+
+            <div class="panels">
+              <div class="panel-tabs has-text-warning">
+                  <a class="is-active" href="/login">Dashboard</a>
+                  <a class="is-active" href="/login"> My Profile</a>
+                  <a class="is-active" href="/login">Add Pet</a>
+                  <a class="is-active" href="/login">Chats</a>
+              </div>
+            </div>
 
           {{/if}}
       </div>
